@@ -25,8 +25,8 @@
                         vm.isFavorite = (vm.currentUser.favorites.indexOf(vm.restaurantId) == -1) ? 'false' : 'true';
                     }
                 })
-                .error(function (error) {
-                    console.log(error);
+                .error(function (err) {
+                    console.log(err);
                 });
             search(vm.restaurantId);
             vm.isDetailsPage = true;
@@ -67,6 +67,7 @@
                     name: _restaurant.name,
                     location: _restaurant.location.city + ", " + _restaurant.location.state_code,
                     thumbnail_url: _restaurant.image_url,
+                    contact: _restaurant.display_phone,
                     rating: _restaurant.rating
                 }
 
@@ -110,6 +111,7 @@
                 name: vm.restaurant.name,
                 location: vm.restaurant.location.city + ", " + vm.restaurant.location.state_code,
                 thumbnail_url: vm.restaurant.image_url,
+                contact: vm.restaurant.display_phone,
                 rating: vm.restaurant.rating
             }
             review._user = vm.currentUser;
@@ -121,8 +123,8 @@
                         swal("Congratulations!", "You successfully submitted review!", "success");
                         $route.reload();
                     },
-                    function (error) {
-                        console.log(error);
+                    function (err) {
+                        console.log(err);
                     }
                 )
         }
